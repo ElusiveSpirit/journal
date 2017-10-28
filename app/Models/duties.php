@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -26,11 +27,13 @@ class duties extends Model
     protected $dates = ['deleted_at'];
 
 
+    public function user()
+    {
+        return User::find($this->user_id);
+    }
+
     public $fillable = [
-        'name',
         'date',
-        'is_night',
-        'is_holiday',
         'user_id'
     ];
 
@@ -40,10 +43,7 @@ class duties extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string',
         'date' => 'date',
-        'is_night' => 'integer',
-        'is_holiday' => 'integer',
         'user_id' => 'integer'
     ];
 
@@ -53,7 +53,6 @@ class duties extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
         'date' => 'required',
         'user_id' => ['required', 'numeric']
     ];

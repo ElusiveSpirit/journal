@@ -20,10 +20,7 @@ class dutiesRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name',
         'date',
-        'is_night',
-        'is_holiday',
         'user_id'
     ];
 

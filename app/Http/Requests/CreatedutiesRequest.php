@@ -18,6 +18,12 @@ class CreatedutiesRequest extends FormRequest
         return true;
     }
 
+    public function validationData() {
+        $input = $this->all();
+        $input['user_id'] = $this->user()['id'];
+        return $input;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

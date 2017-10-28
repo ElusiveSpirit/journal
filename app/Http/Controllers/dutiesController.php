@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use App\User;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -58,11 +59,9 @@ class dutiesController extends AppBaseController
     public function store(CreatedutiesRequest $request)
     {
         $input = $request->all();
-        $input['is_night'] = $input['is_night'] || 0;
-        $input['is_holiday'] = $input['is_holiday'] || 0;
-        error_log(var_dump($input));
+        $input['user_id'] = Auth::id();
 
-        $duties = $this->dutiesRepository->create($input);
+        $this->dutiesRepository->create($input);
 
         Flash::success('Duties saved successfully.');
 
