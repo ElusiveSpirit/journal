@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('arms', 'armsController');
+
+Route::resource('duties', 'dutiesController');
