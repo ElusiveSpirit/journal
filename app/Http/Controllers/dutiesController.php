@@ -46,7 +46,7 @@ class dutiesController extends AppBaseController
     public function create()
     {
         return view('duties.create')
-            ->with('users', $this->get_users_cases());
+            ->with('users', User::get_users_cases());
     }
 
     /**
@@ -107,7 +107,7 @@ class dutiesController extends AppBaseController
 
         return view('duties.edit')
             ->with('duties', $duties)
-            ->with('users', $this->get_users_cases());
+            ->with('users', User::get_users_cases());
     }
 
     /**
@@ -159,13 +159,4 @@ class dutiesController extends AppBaseController
         return redirect(route('duties.index'));
     }
 
-    private function get_users_cases()
-    {
-        $users = User::all();
-        $users_cases = [];
-        foreach ($users as $user) {
-            $users_cases[$user['id']] = $user['username'];
-        }
-        return $users_cases;
-    }
 }

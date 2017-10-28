@@ -28,4 +28,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public static function get_cases()
+    {
+        $users = User::all();
+        $users_cases = [];
+        foreach ($users as $user) {
+            $users_cases[$user['id']] = $user['username'];
+        }
+        return $users_cases;
+    }
 }
