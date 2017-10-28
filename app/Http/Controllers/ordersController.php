@@ -73,7 +73,7 @@ class ordersController extends AppBaseController
 
         $orders = $this->ordersRepository->create($input);
 
-        Flash::success('Orders saved successfully.');
+        Flash::success('Наряд сохранён');
 
         return redirect(route('duties.orders.index', $this->duty->id));
     }
@@ -90,7 +90,7 @@ class ordersController extends AppBaseController
         $orders = $this->ordersRepository->findWithoutFail($id);
 
         if (empty($orders)) {
-            Flash::error('Orders not found');
+            Flash::error('Наряд не найден');
 
             return redirect(route('duties.orders.index', $this->duty->id));
         }
@@ -112,7 +112,7 @@ class ordersController extends AppBaseController
         $orders = $this->ordersRepository->findWithoutFail($id);
 
         if (empty($orders)) {
-            Flash::error('Orders not found');
+            Flash::error('Наряд не найден');
 
             return redirect(route('duties.orders.index', $this->duty->id));
         }
@@ -136,14 +136,14 @@ class ordersController extends AppBaseController
         $orders = $this->ordersRepository->findWithoutFail($id);
 
         if (empty($orders)) {
-            Flash::error('Orders not found');
+            Flash::error('Наряд не найден');
 
             return redirect(route('duties.orders.index', $this->duty->id));
         }
 
         $orders = $this->ordersRepository->update($request->all(), $id);
 
-        Flash::success('Orders updated successfully.');
+        Flash::success('Наряд обновлён');
 
         return redirect(route('duties.orders.index', $this->duty->id));
     }
@@ -160,7 +160,7 @@ class ordersController extends AppBaseController
         $orders = $this->ordersRepository->findWithoutFail($id);
 
         if (empty($orders)) {
-            Flash::error('Orders not found');
+            Flash::error('Наряд не найден');
 
             return redirect(route('duties.orders.index', $this->duty->id));
         }

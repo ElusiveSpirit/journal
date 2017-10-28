@@ -63,7 +63,7 @@ class dutiesController extends AppBaseController
 
         $this->dutiesRepository->create($input);
 
-        Flash::success('Duties saved successfully.');
+        Flash::success('Смена сохранена');
 
         return redirect(route('duties.index'));
     }
@@ -80,7 +80,7 @@ class dutiesController extends AppBaseController
         $duties = $this->dutiesRepository->findWithoutFail($id);
 
         if (empty($duties)) {
-            Flash::error('Duties not found');
+            Flash::error('Смена не найдена');
 
             return redirect(route('duties.index'));
         }
@@ -100,7 +100,7 @@ class dutiesController extends AppBaseController
         $duties = $this->dutiesRepository->findWithoutFail($id);
 
         if (empty($duties)) {
-            Flash::error('Duties not found');
+            Flash::error('Смена не найдена');
 
             return redirect(route('duties.index'));
         }
@@ -123,14 +123,14 @@ class dutiesController extends AppBaseController
         $duties = $this->dutiesRepository->findWithoutFail($id);
 
         if (empty($duties)) {
-            Flash::error('Duties not found');
+            Flash::error('Смена не найдена');
 
             return redirect(route('duties.index'));
         }
 
         $duties = $this->dutiesRepository->update($request->all(), $id);
 
-        Flash::success('Duties updated successfully.');
+        Flash::success('Смена была обновлена');
 
         return redirect(route('duties.index'));
     }
@@ -147,14 +147,14 @@ class dutiesController extends AppBaseController
         $duties = $this->dutiesRepository->findWithoutFail($id);
 
         if (empty($duties)) {
-            Flash::error('Duties not found');
+            Flash::error('Смена не найдена');
 
             return redirect(route('duties.index'));
         }
 
         $this->dutiesRepository->delete($id);
 
-        Flash::success('Duties deleted successfully.');
+        Flash::success('Смена была удалена');
 
         return redirect(route('duties.index'));
     }

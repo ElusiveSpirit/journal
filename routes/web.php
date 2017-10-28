@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'JournalController')->name('home');
 
 
+Route::resource('users', 'UserController');
 Route::resource('arms', 'armsController');
 
 Route::resource('duties', 'dutiesController');
