@@ -1,23 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Панель</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Наряд</th>
+            @foreach($dutyNames as $name)
+                <th scope="col">{!! $name !!}</th>
+            @endforeach
+            <th scope="col">Старший смены</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($duties as $duty)
+            <tr>
+                <th scope="row">{!! $duty->date !!}</th>
+                @foreach ($dutyNames as $name)
+                    @if ($userDuties[$duty->date->format('Y-m-d')] == null)
+                        <td>-</td>
+                    @else
+                        @if ($userDuties[$duty->date->format('Y-m-d')]->name == $name)
+                            <td>{!! $userDuties[$duty->date->format('Y-m-d')]->is_night ? 'Н' : 'Д' !!}</td>
+                        @else
+                            <td></td>
+                        @endif
                     @endif
-
-                    Вы успешно авторизированы
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                @endforeach
+                <td>{!! $duty->user->username !!}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 @endsection

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\duties as Duty;
+use App\Models\orders as Order;
+use Illuminate\Support\Facades\Auth;
 
 class JournalController extends Controller
 {
@@ -28,16 +30,18 @@ class JournalController extends Controller
         ];
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __invoke()
     {
-        $duties = Duty::all();
+        $duties = Duty::orderBy('date', 'asc')->get();
+        $userDuties = [];
+        foreach ($duties as $duty) {
+            $userDuties[$duty->date->format('Y-m-d')] = $duty->getUserOrder(Auth::id());
+        }
 
-        return view('journal')
-            ->with('duties', $duties);
+        return view('home', [
+            'duties' => $duties,
+            'dutyNames' => $this->dutyNames,
+            'userDuties' => $userDuties
+        ]);
     }
 }

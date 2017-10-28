@@ -27,9 +27,24 @@ class duties extends Model
     protected $dates = ['deleted_at'];
 
 
+    public function orders()
+    {
+        return $this->hasMany('App\Models\orders', 'duty_id');
+    }
+
+    public function getUserOrder($user_id)
+    {
+        foreach ($this->orders as $order) {
+            if ($order->user_id == $user_id) {
+                return $order;
+            }
+        }
+        return null;
+    }
+
     public function user()
     {
-        return User::find($this->user_id);
+        return $this->belongsTo('App\User');
     }
 
     public $fillable = [
@@ -54,7 +69,6 @@ class duties extends Model
      */
     public static $rules = [
         'date' => 'required',
-        'user_id' => ['required', 'numeric']
     ];
 
     

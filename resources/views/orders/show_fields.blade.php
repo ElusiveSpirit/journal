@@ -13,7 +13,7 @@
 <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', 'User Id:') !!}
-    <p>{!! $orders->user()->username !!}</p>
+    <p>{!! $orders->user->username !!}</p>
 </div>
 
 <!-- Duty Id Field -->

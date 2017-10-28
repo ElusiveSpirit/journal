@@ -13,6 +13,6 @@
 <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', 'Старший смены:') !!}
-    <p>{!! $duties->user_id !!} {!! $duties->user()->username !!}</p>
+    <p>{!! $duties->user_id !!} {!! $duties->user->username !!}</p>
 </div>
 

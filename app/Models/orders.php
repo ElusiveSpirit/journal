@@ -24,9 +24,14 @@ class orders extends Model
 
     protected $dates = ['deleted_at'];
 
+    public function duty()
+    {
+        return $this->belongsTo('App\Models\duties');
+    }
+
     public function user()
     {
-        return User::find($this->user_id);
+        return $this->belongsTo('App\User');
     }
 
     public $fillable = [

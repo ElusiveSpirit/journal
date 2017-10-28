@@ -11,7 +11,7 @@
     @foreach($orders as $orders)
         <tr>
             <td>{!! $orders->name !!}</td>
-            <td>{!! $orders->user()->username !!}</td>
+            <td>{!! $orders->user->username !!}</td>
             <td>{!! $orders->is_night ? 'Да' : 'Нет' !!}</td>
             <td>
                 {!! Form::open(['route' => ['duties.orders.destroy', $duty->id, $orders->id], 'method' => 'delete']) !!}

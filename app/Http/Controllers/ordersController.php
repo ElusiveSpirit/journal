@@ -37,8 +37,7 @@ class ordersController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->ordersRepository->pushCriteria(new RequestCriteria($request));
-        $orders = $this->ordersRepository->all();
+        $orders = $this->duty->orders;
 
         return view('orders.index')
             ->with('orders', $orders)

@@ -46,7 +46,7 @@ class dutiesController extends AppBaseController
     public function create()
     {
         return view('duties.create')
-            ->with('users', User::get_users_cases());
+            ->with('users', User::get_cases());
     }
 
     /**
@@ -107,7 +107,7 @@ class dutiesController extends AppBaseController
 
         return view('duties.edit')
             ->with('duties', $duties)
-            ->with('users', User::get_users_cases());
+            ->with('users', User::get_cases());
     }
 
     /**

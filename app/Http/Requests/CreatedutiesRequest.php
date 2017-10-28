@@ -20,7 +20,7 @@ class CreatedutiesRequest extends FormRequest
 
     public function validationData() {
         $input = $this->all();
-        $input['user_id'] = $this->user()['id'];
+        $input['user_id'] = $this->user['id'];
         return $input;
     }
 

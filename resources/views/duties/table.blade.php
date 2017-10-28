@@ -10,7 +10,7 @@
     @foreach($duties as $duties)
         <tr>
             <td>{!! $duties->date !!}</td>
-            <td>{!! $duties->user()->username !!}</td>
+            <td>{!! $duties->user->username !!}</td>
             <td>
                 {!! Form::open(['route' => ['duties.destroy', $duties->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
