@@ -39,6 +39,7 @@
                         &nbsp;
                         @role('admin')
                         <li><a href="{{ route('users.index') }}">Пользователи</a> </li>
+                        <li><a href="{{ route('arms.index') }}">АРМ</a> </li>
                         @endrole
                         @role('manager|admin')
                         <li><a href="{{ route('duties.index') }}">Смены</a> </li>
@@ -77,6 +78,21 @@
         </nav>
 
         <div class="container">
+            @auth
+            <ul>
+                <li>
+                    ФИО: {!! Auth::user()->username !!}
+                </li>
+                <li>
+                    В/З: {!! Auth::user()->rank !!}
+                </li>
+                @if (Auth::user()->arm)
+                <li>
+                    № АРМ: {!! Auth::user()->arm->getName() !!}
+                </li>
+                @endif
+            </ul>
+            @endauth
             @yield('content')
         </div>
     </div>

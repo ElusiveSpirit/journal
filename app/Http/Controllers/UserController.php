@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Models\arms as Arm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laracasts\Flash\Flash;
@@ -35,7 +36,8 @@ class UserController extends Controller
     public function create()
     {
         return view('users.create', [
-            'roles' => $this->getRoleCases()
+            'roles' => $this->getRoleCases(),
+            'arms' => Arm::getCases()
         ]);
     }
 
@@ -86,7 +88,8 @@ class UserController extends Controller
     {
         return view('users.edit', [
             'user' => $user,
-            'roles' => $this->getRoleCases()
+            'roles' => $this->getRoleCases(),
+            'arms' => Arm::getCases()
         ]);
     }
 
@@ -127,7 +130,8 @@ class UserController extends Controller
         $user->save();
 
         return view('users.edit')->with('user', $user)
-            ->with('roles', $this->getRoleCases());
+            ->with('roles', $this->getRoleCases())
+            ->with('arms', Arm::getCases());
     }
 
     /**

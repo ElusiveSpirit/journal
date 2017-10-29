@@ -18,6 +18,11 @@
     {!! Form::select('role', $roles, isset($user) ? $user->getRoleNames() : null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-6">
+    {!! Form::label('arm_id', '№ АРМ:') !!}
+    {!! Form::select('arm_id', $arms, isset($user) ? $user->arm : null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Сохранить', ['class' => 'btn btn-primary']) !!}

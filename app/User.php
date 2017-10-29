@@ -11,13 +11,18 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
+    public function arm()
+    {
+        return $this->belongsTo('App\Models\arms');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'username', 'password', 'rank'
+        'username', 'password', 'rank', 'arm_id'
     ];
 
     /**

@@ -48,5 +48,19 @@ class arms extends Model
         'mask' => 'required'
     ];
 
-    
+    public function getName()
+    {
+        return $this->ip . ':' . $this->mask;
+    }
+
+    public static function getCases()
+    {
+        $arms = arms::all();
+        $cases = [];
+        foreach ($arms as $arm) {
+            $cases[$arm['id']] = $arm['ip'] . ':' . $arm['mask'];
+        }
+        return $cases;
+    }
+
 }
