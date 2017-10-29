@@ -5,7 +5,9 @@
 Route::get('/', 'JournalController')->name('journal');
 
 
-Auth::routes();
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('login');
 
 
 Route::group(['middleware' => ['role:admin']], function () {
