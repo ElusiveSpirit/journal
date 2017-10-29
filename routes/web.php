@@ -1,27 +1,23 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'JournalController')->name('journal');
+
 
 Auth::routes();
 
-Route::get('/home', 'JournalController')->name('home');
 
+Route::group(['middleware' => ['role:admin']], function () {
+    // Доступ к редактированию пользователей только у администратора
 
-Route::resource('users', 'UserController');
-Route::resource('arms', 'armsController');
+    Route::resource('users', 'UserController');
+    Route::resource('arms', 'armsController');
+});
 
-Route::resource('duties', 'dutiesController');
-Route::resource('duties.orders', 'ordersController');
+Route::group(['middleware' => 'role:manager|admin'], function () {
+    // Доступ к Нарядам и Сменам у менеджеров и админов
+
+    Route::resource('duties', 'dutiesController');
+    Route::resource('duties.orders', 'ordersController');
+});

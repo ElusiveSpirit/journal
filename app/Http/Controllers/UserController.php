@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Laracasts\Flash\Flash;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -49,6 +51,7 @@ class UserController extends Controller
 
         $role = $input['role'];
         unset($input['role']);
+        $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
         if ($role != '-') {
@@ -114,7 +117,11 @@ class UserController extends Controller
 
         foreach ($input as $key => $value) {
             if ($key[0] != '_' && !($key == 'password' && $value == '')) {
-                $user[$key] = $value;
+                if ($key == 'password') {
+                    $user[$key] = Hash::make($value);
+                } else {
+                    $user[$key] = $value;
+                }
             }
         }
         $user->save();

@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Journal') }}
                     </a>
                 </div>
 
@@ -37,6 +37,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        @role('admin')
+                        <li><a href="{{ route('users.index') }}">Пользователи</a> </li>
+                        @endrole
+                        @role('manager|admin')
+                        <li><a href="{{ route('duties.index') }}">Смены</a> </li>
+                        @endrole
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -44,7 +50,6 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Вход</a></li>
-                            <li><a href="{{ route('register') }}">Регистрация</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
